@@ -1,14 +1,21 @@
 import { StatusBar, useColorScheme } from 'react-native';
-import { RootNavigator } from '../navigation/RootNavigator';
 import { AppProviders } from './providers';
+import { RootNavigator } from '../navigation/RootNavigator';
+import { useMemo } from 'react';
 
-export default function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+const App = () => {
+  const colorScheme = useColorScheme();
+  const barStyle = useMemo(
+    () => (colorScheme === 'dark' ? 'light-content' : 'dark-content'),
+    [colorScheme],
+  );
 
   return (
     <AppProviders>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle={barStyle} />
       <RootNavigator />
     </AppProviders>
   );
-}
+};
+
+export default App;

@@ -1,14 +1,13 @@
 import styled from 'styled-components/native';
 
-type ContainerProps = {
-  $withGap?: boolean;
-};
-
-export const Container = styled.View<ContainerProps>`
+export const Container = styled.View`
   flex: 1;
   justify-content: center;
   padding: 16px;
-  ${({ $withGap }) => $withGap && 'gap: 12px;'}
+`;
+
+export const Content = styled.View`
+  gap: 12px;
 `;
 
 export const Title = styled.Text`

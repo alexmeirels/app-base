@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { login } from '../services/authService';
 
-export function useLogin() {
+export const useLogin = () => {
   const [loading, setLoading] = useState(false);
 
   const submit = useCallback(async (email: string, password: string) => {
@@ -15,4 +15,4 @@ export function useLogin() {
   }, []);
 
   return { loading, submit };
-}
+};

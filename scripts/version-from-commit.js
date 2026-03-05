@@ -70,11 +70,11 @@ const bumpVersion = (version, bumpType) => {
 const readJson = filePath => JSON.parse(fs.readFileSync(filePath, 'utf8'));
 const writeJson = (filePath, data) =>
   fs.writeFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
+const writeStdout = message => process.stdout.write(`${message}\n`);
+const writeStderr = message => process.stderr.write(`${message}\n`);
 
 if (!commitMessage) {
-  console.error(
-    'Missing commit message. Use: npm run version:bump -- "type(scope): description"',
-  );
+  writeStderr('Missing commit message. Use: npm run version:bump -- "type(scope): description"');
   process.exit(1);
 }
 
@@ -82,9 +82,7 @@ const parsed = parseCommitType(commitMessage);
 const bumpType = getBumpType(parsed);
 
 if (!parsed || !bumpType) {
-  console.error(
-    'Invalid or unsupported commit message format. Expected Conventional Commits.',
-  );
+  writeStderr('Invalid or unsupported commit message format. Expected Conventional Commits.');
   process.exit(1);
 }
 
@@ -103,6 +101,6 @@ appJson.version = nextVersion;
 writeJson(packageJsonPath, packageJson);
 writeJson(appJsonPath, appJson);
 
-console.log(`Commit type: ${parsed.type}`);
-console.log(`Bump: ${bumpType}`);
-console.log(`Version: ${currentVersion} -> ${nextVersion}`);
+writeStdout(`Commit type: ${parsed.type}`);
+writeStdout(`Bump: ${bumpType}`);
+writeStdout(`Version: ${currentVersion} -> ${nextVersion}`);
