@@ -16,3 +16,7 @@ Feature-based architecture.
 
 ## Modularity rule
 Each feature should keep its own internal structure (`screens`, `components`, `hooks`, `services`, and `types` when needed).
+
+## Navigation and screen safety rule
+- Every new screen must be registered and navigated using `react-navigation`.
+- Every screen must include safe-area handling (for example `SafeAreaView` or `useSafeAreaInsets`).

@@ -1,16 +1,21 @@
-import { Container } from './styles';
-import { NewAppScreen } from '@react-native/new-app-screen';
-import type { RootNavigatorProps } from './types';
+import type { RootNavigatorProps, RootStackParamList } from './types';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { LoginScreen } from '../../features/auth/screens/LoginScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { RegisterScreen } from '../../features/auth/screens/RegisterScreen';
 import { useMemo } from 'react';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator = (_props: RootNavigatorProps) => {
-  const safeAreaInsets = useSafeAreaInsets();
-  const templateFileName = useMemo(() => 'src/app/App.tsx', []);
+  const screenOptions = useMemo(() => ({ headerShown: false }), []);
 
   return (
-    <Container>
-      <NewAppScreen safeAreaInsets={safeAreaInsets} templateFileName={templateFileName} />
-    </Container>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Login' screenOptions={screenOptions}>
+        <Stack.Screen component={LoginScreen} name='Login' />
+        <Stack.Screen component={RegisterScreen} name='Register' />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
