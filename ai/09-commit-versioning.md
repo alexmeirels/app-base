@@ -31,6 +31,8 @@ All commits must follow the Conventional Commits format:
 Use this command with the commit message as input:
 `npm run version:bump -- "<commit message>"`
 
+Before applying a semantic version increment, the automation must execute the required test gate described in `ai/10-version-bump-test-gate.md`.
+
 Examples:
 - `npm run version:bump -- "feat(auth): add social login"` -> `minor`
 - `npm run version:bump -- "fix(auth): handle null token"` -> `patch`

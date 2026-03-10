@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { spawnSync } = require('child_process');
 
 const commitMessage = process.argv.slice(2).join(' ').trim();
 
@@ -72,6 +73,17 @@ const writeJson = (filePath, data) =>
   fs.writeFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
 const writeStdout = message => process.stdout.write(`${message}\n`);
 const writeStderr = message => process.stderr.write(`${message}\n`);
+const runCommand = (command, args) => {
+  writeStdout(`Running: ${command} ${args.join(' ')}`);
+
+  const result = spawnSync(command, args, {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+    shell: false,
+  });
+
+  return result.status === 0;
+};
 
 if (!commitMessage) {
   writeStderr('Missing commit message. Use: npm run version:bump -- "type(scope): description"');
@@ -94,6 +106,22 @@ const appJson = readJson(appJsonPath);
 
 const currentVersion = packageJson.version;
 const nextVersion = bumpVersion(currentVersion, bumpType);
+
+if (nextVersion !== currentVersion) {
+  const unitTestsPassed = runCommand('npm', ['test', '--', '--runInBand']);
+
+  if (!unitTestsPassed) {
+    writeStderr('Version bump aborted: unit tests failed.');
+    process.exit(1);
+  }
+
+  const e2eTestsPassed = runCommand('npm', ['run', 'e2e:test:ios:headless']);
+
+  if (!e2eTestsPassed) {
+    writeStderr('Version bump aborted: end-to-end tests failed.');
+    process.exit(1);
+  }
+}
 
 packageJson.version = nextVersion;
 appJson.version = nextVersion;

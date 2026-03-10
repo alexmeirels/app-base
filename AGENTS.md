@@ -13,6 +13,7 @@ Instructions are split by topic inside the `ai/` folder.
 7. `ai/07-formatting-prettier.md`
 8. `ai/08-eslint-rules.md`
 9. `ai/09-commit-versioning.md`
+10. `ai/10-version-bump-test-gate.md`
 
 ## Topic references
 - Project and Stack: `ai/01-project-stack.md`
@@ -24,3 +25,4 @@ Instructions are split by topic inside the `ai/` folder.
 - Formatting/Prettier: `ai/07-formatting-prettier.md`
 - ESLint Rules: `ai/08-eslint-rules.md`
 - Commit and Versioning: `ai/09-commit-versioning.md`
+- Version Bump Test Gate: `ai/10-version-bump-test-gate.md`
