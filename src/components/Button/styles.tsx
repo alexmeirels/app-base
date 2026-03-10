@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const ButtonContainer = styled.Pressable`
   align-items: center;
-  background-color: #111827;
+  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 8px;
   padding: 12px 16px;
 `;
