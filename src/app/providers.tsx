@@ -1,13 +1,11 @@
 import { getThemeByMode, type ThemeMode } from '../theme';
 import { type PropsWithChildren, useCallback, useMemo, useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { ThemeContext } from './theme-context';
+import { ThemeContext } from '../context/ThemeContext';
 import { ThemeProvider } from 'styled-components/native';
-import { useTheme } from '../hooks/useTheme';
 
 export const AppProviders = ({ children }: PropsWithChildren) => {
-  const systemMode = useTheme();
-  const [mode, setMode] = useState<ThemeMode>(systemMode);
+  const [mode, setMode] = useState<ThemeMode>('dark');
 
   const toggleTheme = useCallback(() => {
     setMode(currentMode => (currentMode === 'dark' ? 'light' : 'dark'));

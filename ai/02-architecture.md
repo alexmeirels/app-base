@@ -5,12 +5,14 @@ Feature-based architecture.
 
 ## Base structure
 - `src/app`: application bootstrap and providers.
+- `src/context`: global React contexts and context hooks.
 - `src/features`: domain-based functionalities.
 - `src/components`: global reusable components.
 - `src/navigation`: root navigation.
 - `src/hooks`: shared hooks.
 - `src/services`: global services (for example, base API).
 - `src/store`: global state.
+- `src/theme`: global theme tokens, palettes, and theme mapping.
 - `src/utils`: pure utility functions.
 - `src/types`: shared types.
 
@@ -20,3 +22,6 @@ Each feature should keep its own internal structure (`screens`, `components`, `h
 ## Navigation and screen safety rule
 - Every new screen must be registered and navigated using `react-navigation`.
 - Every screen must include safe-area handling (for example `SafeAreaView` or `useSafeAreaInsets`).
+
+## Architecture documentation rule
+- Whenever a new folder is created as part of the architecture, the corresponding `ai/*.md` architecture/folder documentation must be updated in the same change.
