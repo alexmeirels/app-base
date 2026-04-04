@@ -12,6 +12,11 @@
 - Avoid inline styles.
 - When creating components, use theme/design tokens whenever it makes sense (for example colors, spacing, typography, radius, and borders) instead of hardcoded values.
 
+## JSX conditional rendering
+- Prefer `condition && <Component />` over `condition ? <Component /> : null` when the false case is “render nothing”.
+- Do **not** use `&&` when the left-hand expression can be `0`, `''`, or another falsy value that would render visibly; use an explicit ternary to `null`, `Boolean(x)`, or a strict comparison instead.
+- Keep a full ternary when the false branch must render different JSX (`a ? <A /> : <B />`).
+
 ## Good practices
 - Keep components small and focused on a single responsibility.
 - Move business logic to hooks/services.

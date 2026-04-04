@@ -35,9 +35,9 @@ This document explains each ESLint rule configured in `.eslintrc.js`.
   - `import * as X from 'module'` is forbidden.
 
 - `sort-imports: ['error', { ... }]`
-  - Enforces import ordering.
-  - Sorts import declarations and imported members alphabetically.
-  - Keeps member syntax order consistent (`none`, `all`, `multiple`, `single`).
+  - Enforces import declaration/member sorting.
+  - `allowSeparatedGroups: true` allows explicit blank-line-separated groups.
+  - Corrigível com `eslint --fix`.
 
 - `object-shorthand: ['error', 'always']`
   - Enforces object shorthand syntax.
@@ -56,6 +56,9 @@ This document explains each ESLint rule configured in `.eslintrc.js`.
 ## Maintenance rule
 Whenever `.eslintrc.js` changes, update this file in the same change to keep documentation synchronized.
 This update is mandatory for any `.eslintrc.js` change.
+
+## Cursor IDE: ESLint without repeated terminal approval
+ESLint configuration does not control Cursor’s sandbox prompts. To allow `npx eslint` / `npm run lint` to auto-run, use `terminalAllowlist` in `~/.cursor/permissions.json` (see [Cursor permissions](https://cursor.com/docs/reference/permissions.md)) and enable an auto-run mode in Cursor settings. Project note: `.cursor/rules/eslint-terminal-auto-run.mdc`.
 
 ## Execution rule
 After any code change, run ESLint with auto-fix for the whole project:

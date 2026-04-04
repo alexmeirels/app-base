@@ -4,13 +4,16 @@ export type AppTheme = {
   mode: ThemeMode;
   colors: {
     background: string;
-    textPrimary: string;
-    textSecondary: string;
-    primary: string;
     border: string;
+    card: string;
+    error: string;
+    info: string;
     inputBackground: string;
     inputPlaceholder: string;
-    card: string;
+    primary: string;
+    success: string;
+    textPrimary: string;
+    textSecondary: string;
   };
 };
 
@@ -18,13 +21,16 @@ export const lightTheme: AppTheme = {
   mode: 'light',
   colors: {
     background: '#FFFFFF',
-    textPrimary: '#111827',
-    textSecondary: '#374151',
-    primary: '#111827',
     border: '#D1D5DB',
+    card: '#FFFFFF',
+    error: '#DC2626',
+    info: '#2563EB',
     inputBackground: '#FFFFFF',
     inputPlaceholder: '#6B7280',
-    card: '#FFFFFF',
+    primary: '#111827',
+    success: '#16A34A',
+    textPrimary: '#111827',
+    textSecondary: '#374151',
   },
 };
 
@@ -32,13 +38,16 @@ export const darkTheme: AppTheme = {
   mode: 'dark',
   colors: {
     background: '#0B1220',
-    textPrimary: '#F3F4F6',
-    textSecondary: '#D1D5DB',
-    primary: '#2563EB',
     border: '#334155',
+    card: '#111827',
+    error: '#F87171',
+    info: '#60A5FA',
     inputBackground: '#111827',
     inputPlaceholder: '#94A3B8',
-    card: '#111827',
+    primary: '#2563EB',
+    success: '#4ADE80',
+    textPrimary: '#F3F4F6',
+    textSecondary: '#D1D5DB',
   },
 };
 

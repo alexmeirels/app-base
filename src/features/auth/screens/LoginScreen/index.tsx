@@ -11,20 +11,31 @@ import {
   Subtitle,
   Title,
 } from './styles';
-import LogoWhite from '../../../../assets/logos/logo-white.svg';
+import { useCallback, useState } from 'react';
+import { login } from '../../services/authService';
 import { LoginForm } from '../../components/LoginForm';
-import type { LoginScreenProps } from './types';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../../../../navigation/RootNavigator/types';
-import { useAuthContext } from '../../../../context/AuthContext';
-import { useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-type LoginScreenNavigation = NativeStackNavigationProp<RootStackParamList, 'Login'>;
+type LoginScreenProps = import('./types').LoginScreenProps;
+type RootStackParamList = import('../../../../navigation/RootNavigator/types').RootStackParamList;
+type LoginScreenNavigation = import('@react-navigation/native-stack').NativeStackNavigationProp<
+  RootStackParamList,
+  'Login'
+>;
 
 export const LoginScreen = (_props: LoginScreenProps) => {
   const navigation = useNavigation<LoginScreenNavigation>();
-  const { loading, signIn } = useAuthContext();
+  const [loading, setLoading] = useState(false);
+
+  const signIn = useCallback(async (email: string, password: string) => {
+    setLoading(true);
+
+    try {
+      await login({ email, password });
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   const handleGoToRegister = useCallback(() => {
     navigation.navigate('Register');
@@ -43,16 +54,14 @@ export const LoginScreen = (_props: LoginScreenProps) => {
       <Content>
         <Header>
           <LogoContainer>
-            <LogoSquare>
-              <LogoWhite height={22} width={54} />
-            </LogoSquare>
+            <LogoSquare />
           </LogoContainer>
           <Title testID='login-screen-title'>Portal do Morador</Title>
           <Subtitle>LLZ Garantidora</Subtitle>
         </Header>
 
         <LoginForm
-          authLoading={loading.main}
+          authLoading={loading}
           onForgotPassword={handleForgotPassword}
           onLoginSuccess={handleLoginSuccess}
           signIn={signIn}

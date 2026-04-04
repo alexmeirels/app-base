@@ -1,9 +1,9 @@
 import { getThemeByMode, type ThemeMode } from '../theme';
 import { type PropsWithChildren, useCallback, useMemo, useState } from 'react';
-import { AuthProvider } from '../context/AuthContext';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeContext } from '../context/ThemeContext';
 import { ThemeProvider } from 'styled-components/native';
+import { ToastProvider } from '../components/Toast';
 
 export const AppProviders = ({ children }: PropsWithChildren) => {
   const [mode, setMode] = useState<ThemeMode>('light');
@@ -20,11 +20,11 @@ export const AppProviders = ({ children }: PropsWithChildren) => {
 
   return (
     <SafeAreaProvider>
-      <AuthProvider>
-        <ThemeContext.Provider value={contextValue}>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
-        </ThemeContext.Provider>
-      </AuthProvider>
+      <ThemeContext.Provider value={contextValue}>
+        <ThemeProvider theme={theme}>
+          <ToastProvider>{children}</ToastProvider>
+        </ThemeProvider>
+      </ThemeContext.Provider>
     </SafeAreaProvider>
   );
 };
