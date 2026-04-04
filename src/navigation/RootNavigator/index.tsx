@@ -1,6 +1,7 @@
 import { NavigationContainer, type Theme as NavigationTheme } from '@react-navigation/native';
 import type { RootNavigatorProps, RootStackParamList } from './types';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { HomeScreen } from '../../features/home/screens/HomeScreen';
 import { LoginScreen } from '../../features/auth/screens/LoginScreen';
 import { RegisterScreen } from '../../features/auth/screens/RegisterScreen';
 import { useMemo } from 'react';
@@ -10,7 +11,13 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator = (_props: RootNavigatorProps) => {
   const theme = useTheme();
-  const screenOptions = useMemo(() => ({ headerShown: false }), []);
+  const screenOptions = useMemo(
+    () => ({
+      gestureEnabled: false,
+      headerShown: false,
+    }),
+    [],
+  );
   const navigationTheme = useMemo<NavigationTheme>(
     () => ({
       dark: theme.mode === 'dark',
@@ -47,6 +54,7 @@ export const RootNavigator = (_props: RootNavigatorProps) => {
   return (
     <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator initialRouteName='Login' screenOptions={screenOptions}>
+        <Stack.Screen component={HomeScreen} name='Home' />
         <Stack.Screen component={LoginScreen} name='Login' />
         <Stack.Screen component={RegisterScreen} name='Register' />
       </Stack.Navigator>

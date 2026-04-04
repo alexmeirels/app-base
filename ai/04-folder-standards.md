@@ -2,6 +2,7 @@
 
 ## Rules
 - Domain screens must live in `src/features/<feature>/screens`.
+- Every screen root must use `SafeAreaView` from `react-native-safe-area-context`.
 - Feature-specific components must live in `src/features/<feature>/components`.
 - Feature-specific hooks must live in `src/features/<feature>/hooks`.
 - Feature-specific services must live in `src/features/<feature>/services`.

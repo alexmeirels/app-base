@@ -1,1 +1,6 @@
-export type LoginFormProps = Record<string, never>;
+export type LoginFormProps = {
+  authLoading: boolean;
+  signIn: (email: string, password: string) => Promise<unknown>;
+  onForgotPassword: () => void;
+  onLoginSuccess: () => void;
+};

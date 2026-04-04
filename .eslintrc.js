@@ -15,6 +15,13 @@ module.exports = {
     'no-var': 'error',
     'prefer-const': 'error',
     'no-duplicate-imports': 'error',
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector: 'ImportNamespaceSpecifier',
+        message: 'Namespace imports (import * as X) are not allowed in this project.',
+      },
+    ],
     'sort-imports': [
       'error',
       {

@@ -1,15 +1,21 @@
 import { ButtonContainer, ButtonText } from './styles';
 import type { ButtonProps } from './types';
+import { ActivityIndicator } from 'react-native';
 import { useCallback } from 'react';
 
-export const Button = ({ disabled, title, onPress, testID }: ButtonProps) => {
+export const Button = ({ disabled, loading, size = 'medium', title, onPress, testID }: ButtonProps) => {
   const handlePress = useCallback(() => {
     onPress();
   }, [onPress]);
 
   return (
-    <ButtonContainer disabled={disabled} onPress={handlePress} testID={testID}>
-      <ButtonText>{title}</ButtonText>
+    <ButtonContainer
+      $size={size}
+      disabled={disabled || loading}
+      onPress={handlePress}
+      testID={testID}
+    >
+      {loading ? <ActivityIndicator color='#ffffff' /> : <ButtonText>{title}</ButtonText>}
     </ButtonContainer>
   );
 };

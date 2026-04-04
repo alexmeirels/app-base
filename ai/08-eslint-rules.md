@@ -30,6 +30,10 @@ This document explains each ESLint rule configured in `.eslintrc.js`.
 - `no-duplicate-imports: 'error'`
   - Disallows duplicated import declarations from the same module.
 
+- `no-restricted-syntax: ['error', { selector: 'ImportNamespaceSpecifier', ... }]`
+  - Disallows namespace imports.
+  - `import * as X from 'module'` is forbidden.
+
 - `sort-imports: ['error', { ... }]`
   - Enforces import ordering.
   - Sorts import declarations and imported members alphabetically.

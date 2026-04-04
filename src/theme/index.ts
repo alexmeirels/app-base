@@ -17,7 +17,7 @@ export type AppTheme = {
 export const lightTheme: AppTheme = {
   mode: 'light',
   colors: {
-    background: '#F9FAFB',
+    background: '#FFFFFF',
     textPrimary: '#111827',
     textSecondary: '#374151',
     primary: '#111827',
