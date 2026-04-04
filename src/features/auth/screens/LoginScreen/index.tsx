@@ -56,8 +56,8 @@ export const LoginScreen = (_props: LoginScreenProps) => {
           <LogoContainer>
             <LogoSquare />
           </LogoContainer>
-          <Title testID='login-screen-title'>Portal do Morador</Title>
-          <Subtitle>LLZ Garantidora</Subtitle>
+          <Title testID='login-screen-title'>Portal</Title>
+          <Subtitle>Name app</Subtitle>
         </Header>
 
         <LoginForm
